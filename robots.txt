@@ -1,0 +1,13 @@
+User-agent: *
+Disallow: /?s=*
+Disallow: /page/*/?s=*
+Disallow: /search/
+Disallow: /search$
+Disallow: /sign-up/
+Disallow: /sign-up$
+Disallow: /login/
+Disallow: /login$
+Disallow: /go/
+Disallow: /go$
+Disallow: /app/
+Disallow: /app$

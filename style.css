@@ -1,0 +1,425 @@
+/* === ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ ЦВЕТОВ === */
+:root {
+  --color-bg: #1A1F29;          /* фон */
+  --color-bg-header: #1A1F29;   /* фон хедера/футера */
+  --color-text: #FFFFFF;        /* основной текст */
+  --color-menu-text: #D1D2D4;   /* надписи в меню */
+  --color-btn: #DBA200;         /* кнопки */
+  --color-btn-text: #FFFFFF;    /* текст на кнопках */
+  --color-login-bg: #1A1F29;    /* фон кнопки логина */
+}
+
+/* === СБРОС === */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  overflow-x: hidden;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+/* === ССЫЛКИ === */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* === КОНТЕЙНЕРЫ === */
+section,
+header,
+footer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 16px;
+  border-radius: 15px;
+}
+
+/* === HEADER + BURGER === */
+header {
+  background-color: var(--color-bg-header);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-left img {
+  display: block;
+}
+
+.nav-toggle {
+  display: none;
+}
+
+.header-nav {
+  display: flex;
+  gap: 16px;
+  font-size: 14px;
+}
+
+/* цвет пунктов меню */
+.header-nav a {
+  color: var(--color-menu-text);
+  opacity: 0.9;
+}
+
+.header-nav a:hover {
+  opacity: 1;
+}
+
+.header-right {
+  display: flex;
+  gap: 8px;
+}
+
+.header-right a {
+  padding: 10px 18px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+/* логин — прозрачная кнопка на фоне хедера */
+.header-right .btn-login {
+  background-color: var(--color-login-bg);
+  color: var(--color-menu-text);
+  border-radius: 10px;
+  border: 1px solid #2A3240;
+}
+
+/* регистрация — жёлтая кнопка */
+.header-right .btn-register {
+  background-color: var(--color-btn);
+  color: var(--color-btn-text);
+  border-radius: 10px;
+}
+
+.header-right a:hover {
+  opacity: 0.9;
+}
+
+.burger {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+.burger span {
+  width: 20px;
+  height: 2px;
+  background-color: #FFFFFF;
+  border-radius: 2px;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.nav-toggle:checked + .burger span:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+.nav-toggle:checked + .burger span:nth-child(2) {
+  opacity: 0;
+}
+.nav-toggle:checked + .burger span:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+/* === HERO === */
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  padding-top: 32px;
+}
+
+.hero-text {
+  width: 60%;
+}
+
+.hero-image {
+  width: 40%;
+}
+
+.hero-image img {
+  height: auto;
+  display: block;
+  max-height: 300px;
+}
+
+.hero-text a {
+  display: inline-block;
+  background-color: var(--color-btn);
+  color: var(--color-btn-text);
+  padding: 12px 24px;
+  border-radius: 4px;
+  font-weight: 600;
+  margin-top: 12px;
+}
+
+.hero-text a:hover {
+  opacity: 0.9;
+}
+
+/* === ЗАГОЛОВКИ / ТЕКСТ === */
+section h2,
+section h3 {
+  margin-bottom: 16px;
+}
+
+section p {
+  margin-bottom: 16px;
+}
+
+section ul {
+  margin-left: 18px;
+  margin-bottom: 16px;
+}
+
+section img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin-bottom: 16px;
+}
+
+/* === HORIZONTAL BONUS CAROUSEL === */
+.carousel {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 12px 0;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* одна длинная лента, листается по горизонтали */
+.carousel-track {
+  display: flex;
+  gap: 16px;
+}
+
+/* каждая карточка бонуса — фиксированная ширина */
+.carousel-track a {
+  flex: 0 0 320px;          /* ширина карточки на десктопе */
+  scroll-snap-align: start;
+}
+
+/* адаптив под мобильные: карточки чуть уже */
+@media (max-width: 768px) {
+  .carousel-track a {
+      flex: 0 0 260px;
+  }
+}
+
+.carousel-track img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  display: block;
+}
+/* видимый горизонтальный скроллбар для карусели */
+.carousel {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+
+  /* чтобы было видно, что блок можно крутить */
+  scrollbar-width: thin;                 /* Firefox */
+  scrollbar-color: #DBA200 #11151F;      /* ползунок / фон */
+}
+
+/* WebKit (Chrome, Safari, Edge) */
+.carousel::-webkit-scrollbar {
+  height: 8px;                           /* толщина полоски */
+}
+
+.carousel::-webkit-scrollbar-track {
+  background: #11151F;
+  border-radius: 4px;
+}
+
+.carousel::-webkit-scrollbar-thumb {
+  background: #DBA200;
+  border-radius: 4px;
+}
+
+/* при наведении – чуть ярче */
+.carousel::-webkit-scrollbar-thumb:hover {
+  background: #f0b500;
+}
+
+
+
+/* === КНОПКИ СЕКЦИЙ === */
+.section-cta {
+  text-align: center;
+  margin-top: 8px;
+}
+
+.section-cta .btn {
+  display: inline-block;
+  background-color: var(--color-btn);
+  color: var(--color-btn-text);
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+.section-cta .btn:hover {
+  opacity: 0.9;
+}
+
+/* === FOOTER === */
+footer {
+  background-color: var(--color-bg-header);
+  margin-top: 40px;
+  padding-top: 24px;
+  padding-bottom: 24px;
+  text-align: center;
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+/* ссылки в футере — как меню */
+.footer-nav {
+  margin-bottom: 12px;
+}
+
+.footer-nav a {
+  margin: 0 8px;
+  color: var(--color-menu-text);
+  opacity: 0.9;
+}
+
+.footer-nav a:hover {
+  opacity: 1;
+}
+
+/* === АДАПТИВ === */
+@media (max-width: 768px) {
+
+  header {
+      flex-wrap: nowrap;
+      gap: 8px;
+      border-radius: 0;
+  }
+
+  .burger {
+      display: flex;
+  }
+
+  .header-nav {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 64px;
+      background-color: var(--color-bg-header);
+      flex-direction: column;
+      padding: 12px 16px 16px;
+      display: none;
+  }
+
+  .header-nav a {
+      padding: 6px 0;
+  }
+
+  .nav-toggle:checked ~ .header-nav {
+      display: flex;
+  }
+
+  .hero {
+      flex-direction: column;
+      text-align: center;
+  }
+
+  .hero-text,
+  .hero-image {
+      width: 100%;
+  }
+
+  .hero-image img {
+      max-width: 70%;
+      margin: 0 auto 16px;
+  }
+
+  section img {
+      width: 100%;
+      max-width: 100%;
+      margin: 0 auto 16px;
+  }
+
+  .carousel-track {
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+
+  .header-right {
+      display: none;
+  }
+
+  body,
+  section,
+  .hero-text,
+  .header-nav,
+  .footer-nav {
+      text-align: center;
+  }
+
+  section ul {
+      margin-left: 0;
+      padding-left: 0;
+      list-style-position: inside;
+  }
+}
+/* === VIP BLOCK LAYOUT === */
+.vip-layout {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+.vip-text {
+  flex: 1 1 60%;
+}
+
+.vip-image {
+  flex: 1 1 40%;
+}
+
+.vip-image img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* mobile: stack image under text */
+@media (max-width: 768px) {
+  .vip-layout {
+      flex-direction: column;
+      text-align: center;
+  }
+
+  .vip-text,
+  .vip-image {
+      width: 100%;
+  }
+
+  .vip-image img {
+      max-width: 70%;
+      margin: 0 auto 16px;
+  }
+}
+
